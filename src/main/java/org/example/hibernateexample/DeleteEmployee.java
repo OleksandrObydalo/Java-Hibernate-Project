@@ -4,28 +4,21 @@ import org.example.hibernateexample.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-import java.util.Properties;
-
-public class SelectEmployee {
+public class DeleteEmployee {
     public static void main(String[] args) {
         SessionFactory factory = SessionFactoryCreator.getSessionFactory();
 
         try (Session session = factory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            int id = 1;
             try {
-                Employee employee = new Employee("Pascal", "Savage", "Math", 20000);
-                session.save(employee);
-                System.out.println(employee);
-                id = employee.getId();
-                System.out.println("Employee added");
 
-                Employee employee2 = session.get(Employee.class, id);
+//                Employee employee = session.get(Employee.class, 9);
+//                session.delete(employee);
+
+                session.createQuery("delete Employee where name = 'Steve'").executeUpdate();
+
                 transaction.commit();
-                System.out.println(employee2);
-                System.out.println("Employee selected");
 
             } catch (Exception e) {
                 transaction.rollback();

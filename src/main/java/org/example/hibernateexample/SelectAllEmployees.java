@@ -4,11 +4,10 @@ import org.example.hibernateexample.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-import java.util.Properties;
+import java.util.List;
 
-public class SelectEmployee {
+public class SelectAllEmployees {
     public static void main(String[] args) {
         SessionFactory factory = SessionFactoryCreator.getSessionFactory();
 
@@ -16,16 +15,15 @@ public class SelectEmployee {
             Transaction transaction = session.beginTransaction();
             int id = 1;
             try {
-                Employee employee = new Employee("Pascal", "Savage", "Math", 20000);
-                session.save(employee);
-                System.out.println(employee);
-                id = employee.getId();
-                System.out.println("Employee added");
+                List<Employee> employees  = session.createQuery("from Employee " +
+                                "where name = 'Pascal' AND salary > 10000")
+                        .getResultList();
 
-                Employee employee2 = session.get(Employee.class, id);
+                for(Employee employee: employees){
+                    System.out.println(employee);
+                }
+
                 transaction.commit();
-                System.out.println(employee2);
-                System.out.println("Employee selected");
 
             } catch (Exception e) {
                 transaction.rollback();

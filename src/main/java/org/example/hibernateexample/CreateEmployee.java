@@ -16,7 +16,7 @@ public class CreateEmployee {
         try (Session session = factory.openSession()) {
             Transaction transaction = session.beginTransaction();
             try {
-                Employee employee = new Employee("Steve", "Jobs", "Smartphones", 40000);
+                Employee employee = new Employee("Pascal", "Lui", "Smartphones", 10000);
                 session.save(employee);
                 transaction.commit();
                 System.out.println(employee);
