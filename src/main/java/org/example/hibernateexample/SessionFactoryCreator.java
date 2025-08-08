@@ -1,5 +1,6 @@
 package org.example.hibernateexample;
 
+import org.example.hibernateexample.entity.Detail;
 import org.example.hibernateexample.entity.Employee;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -21,6 +22,7 @@ public class SessionFactoryCreator {
             factory = new Configuration()
                     .setProperties(properties)
                     .addAnnotatedClass(Employee.class)
+                    .addAnnotatedClass(Detail.class)
                     .buildSessionFactory();
         }
         return factory;

@@ -1,5 +1,6 @@
 package org.example.hibernateexample;
 
+import org.example.hibernateexample.entity.Detail;
 import org.example.hibernateexample.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,7 +17,9 @@ public class CreateEmployee {
         try (Session session = factory.openSession()) {
             Transaction transaction = session.beginTransaction();
             try {
-                Employee employee = new Employee("Pascal", "Lui", "Smartphones", 10000);
+                Employee employee = new Employee("Gary", "Nest", "Sales", 7000);
+                Detail detail = new Detail("Poltava", "1987654321", "gary.nest@gmail.com");
+                employee.setEmpDetails(detail);
                 session.save(employee);
                 transaction.commit();
                 System.out.println(employee);

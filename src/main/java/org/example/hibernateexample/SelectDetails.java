@@ -5,18 +5,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class DeleteEmployee {
+public class SelectDetails {
     public static void main(String[] args) {
         SessionFactory factory = SessionFactoryCreator.getSessionFactory();
 
         try (Session session = factory.openSession()) {
             Transaction transaction = session.beginTransaction();
+
             try {
-
-                Employee employee = session.get(Employee.class, 2);
-                session.delete(employee);
-
-//                session.createQuery("delete Employee where name = 'Steve'").executeUpdate();
+                Employee employee = session.get(Employee.class, 10);
+                System.out.println(employee.getEmpDetails());
 
                 transaction.commit();
 

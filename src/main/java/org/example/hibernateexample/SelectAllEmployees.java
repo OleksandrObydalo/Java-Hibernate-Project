@@ -13,7 +13,7 @@ public class SelectAllEmployees {
 
         try (Session session = factory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            int id = 1;
+
             try {
                 List<Employee> employees  = session.createQuery("from Employee " +
                                 "where name = 'Pascal' AND salary > 10000")
